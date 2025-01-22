@@ -1,0 +1,39 @@
+#products {
+    padding-top: 100px;
+}
+
+#products .container {
+
+    .items-content{
+        h5 {
+            color: var(--infobar-icon-color);
+        }
+    
+        h5, p {
+            text-align: center;
+            padding: 10px;
+        }
+    
+        p {
+            font-size: 40px;
+            font-weight: 700;
+            margin-top: 20px;
+            line-height: 56px;
+        }
+    }
+
+    .item-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+} 
+
+
+@media (max-width: 767px) {
+    .item-list {
+      justify-content: center !important;
+      align-items: center;
+    }
+  }

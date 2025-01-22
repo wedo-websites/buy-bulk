@@ -1,0 +1,14 @@
+1.) npm i
+2.) npm start
+3.) npm install @fortawesome/fontawesome-free
+
+
+
+
+Things to do
+1.) Correct the css
+    - have global variable
+    - remove the unnessary css
+2.) use defer
+3.) responsive fix
+4.) menu fixed position

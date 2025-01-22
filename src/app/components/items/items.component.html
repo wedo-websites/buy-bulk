@@ -1,0 +1,13 @@
+<div id="products">
+    <div class="container">
+        <div class="items-content">
+            <h5>Items</h5>
+            <p>We Provide <br> The Best Quality</p>
+        </div>
+        <div class="item-list">
+            @for (item of itemsArray; track $index) {
+                <app-item [item]="item"></app-item>
+            }
+        </div>
+    </div>
+</div>

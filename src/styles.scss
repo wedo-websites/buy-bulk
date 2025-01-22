@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+:root {
+  --infobar-text-color: #7a7a7a;
+  --infobar-text-hover-color: #393939;
+  --infobar-border-color: #eee;
+  --infobar-icon-color: #f35525;
+
+  --menu-text-color: #1e1e1e;
+}

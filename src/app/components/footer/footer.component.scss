@@ -1,0 +1,21 @@
+#app-footer {
+    margin-top: 25px;
+    position: relative;
+    background-color: #1e1e1e;
+    padding: 45px 0;
+    text-align: center;
+  
+    .footer-content {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      padding: 30px;
+    }
+  
+    p {
+      margin: 0;
+      color: #fff;
+    }
+  
+}
+  

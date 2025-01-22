@@ -1,0 +1,19 @@
+<div class="navbar-container"> 
+    <div class="container menu-bar">
+        <div class="brand">
+            <img src="images/logo-thumnail.png" alt="Logo" class="logo"/>
+            <h2><b>Buy Bulk</b></h2>
+        </div>
+        <div class="hamburger" (click)="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="menus" [class.show]="menuOpen">
+            <ul>
+                <li><a href="#home" [class.active]="activeTab === 'home'" (click)="disableMenu()">Home</a></li>
+                <li><a href="#products" [class.active]="activeTab === 'products'" (click)="disableMenu()">Products</a></li>
+                <li><a href="#about-us" [class.active]="activeTab === 'about-us'" (click)="disableMenu()">About Us</a></li>
+                <li><a href="#contact" [class.active]="activeTab === 'contact'" (click)="disableMenu()"><i class="fa fa-address-book" aria-hidden="true"></i> Contact Us </a></li>
+            </ul>
+        </div>
+    </div>
+</div>

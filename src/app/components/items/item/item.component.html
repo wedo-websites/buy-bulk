@@ -1,0 +1,16 @@
+<div class="item-container">
+    <div class="container">
+        <img [src]="item.image" [alt]="item.title">
+        <div class="item-header">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.sell_price }}</p>
+        </div>
+        <div class="item-content">
+            <ul> 
+                <li>Selling Price: <span>{{ item.sell_price }}</span></li>
+                <li>Market Price: <span class="strikethrough">{{ item.market_price }}</span></li>
+                <li>Stock Available: <span>{{ item.stock_avail }}</span></li>
+            </ul>
+        </div>
+    </div>
+</div>

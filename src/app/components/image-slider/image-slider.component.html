@@ -1,0 +1,24 @@
+<div class="slider">
+    <!-- Slider Images -->
+    <div class="slides">
+      <div *ngFor="let image of images; let i = index" class="slide" [class.active]="i === currentIndex">
+        <img [src]="image.src" [alt]="image.alt" loading="eager">
+        <div class="text-overlay">
+            <div class="header-text">
+                <span>{{image.title}}<em>{{image.quote}}</em></span>
+            </div>
+            <h2 [innerHTML]="image.description"></h2>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Navigation Arrows -->
+    <button class="prev" (click)="prevSlide()">&#10094;</button>
+    <button class="next" (click)="nextSlide()">&#10095;</button>
+  
+    <!-- Navigation Dots -->
+    <div class="dots">
+      <span *ngFor="let image of images; let i = index" [class.active]="i === currentIndex" (click)="goToSlide(i)"></span>
+    </div>
+  </div>
+  
