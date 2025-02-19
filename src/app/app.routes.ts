@@ -6,11 +6,14 @@ export const routes: Routes = [
     {
       path: '',
       component: HomeComponent,
-      title: 'Buy-Bulk',
+      title: 'Buy-Bulk'
     },
     {
       path: 'admin',
       component: AdminComponent,
-      title: 'Admin',
+      title: 'Admin'
+    },
+    {
+      path: '**', redirectTo: '', pathMatch: 'full'
     }
   ];
