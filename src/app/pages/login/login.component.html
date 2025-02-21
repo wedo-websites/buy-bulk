@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 350px;">
+      <h3 class="text-center mb-4">LOGIN</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email address" autocomplete="on">
+            <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;Enter your email address</label>
+            <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-danger small error-message">
+                Valid email is required.
+            </div>
+          </div>
+        <div class="form-floating mb-3">
+            <input type="password" id="password" class="form-control" formControlName="password" placeholder="Your secure password" autocomplete="off">
+            <label for="password"><i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password (min. 4 characters)</label>
+            <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger small error-message">
+                Password is required atleast 4 characters.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login <i class="fa fa-sign-in" aria-hidden="true"></i> </button>
+      </form>
+    </div>
+  </div>
+  

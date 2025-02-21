@@ -2,7 +2,7 @@
   padding: 20px;
 
   table {
-    border: 1px solid var(--infobar-icon-color);
+    border: 1px solid #e3e3e3;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
   }
 
@@ -52,7 +52,6 @@
     button:hover {
       background-color: #b70707;
     }
-    
   }
 
   tr {
@@ -71,12 +70,44 @@
     color: #b70707;
   }
 
+  .image-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
   img {
-    width: 150px;
+    width: 250px;
+    height: 100%;
+    object-fit: contain;
   }
 
   tbody {
     height: 200px;
     overflow: scroll;
   }
+
+  button:disabled {
+    cursor: not-allowed;
+    border: none;
+    opacity: 0.5;
+  }
+
+  .product-img{
+    width: 35px;
+    height: 25px; 
+    object-fit: cover;
+  }
+
+  tr {
+    height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  
 }

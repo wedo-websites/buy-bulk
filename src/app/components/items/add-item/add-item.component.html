@@ -5,7 +5,8 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th class="text-start" scope="col">Product Name</th>
+                    <th class="table-image" scope="col">Image</th>
+                    <th class="text-start" scope="col">Name</th>
                     <th scope="col">Selling Price</th>
                     <th scope="col">Market Price</th>
                     <th scope="col">Stock</th>
@@ -14,47 +15,59 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of itemsArray; let i = index">
+                  <tr *ngFor="let product of products; let i = index">
                     <td>{{ i + 1}}</td>
-                    <td class="text-start">{{item.title}}</td>
-                    <td>{{item.sell_price}}</td>
-                    <td>{{item.market_price}}</td>
-                    <td>{{item.stock_avail}}</td>
-                    <td><i class="fa fa-trash icon delete-icon" aria-hidden="true"></i></td>
-                    <td><i class="fa fa-pencil icon" aria-hidden="true"></i></td>
+                    <td>
+                        <img [src]="product.image || defaultImage" class="product-img" alt="Product Image">
+                    </td>
+                    <td class="text-start">{{product.name}}</td>
+                    <td>{{product.selling_price | currency:'INR' }}</td>
+                    <td>{{product.market_price | currency:'INR' }}</td> 
+                    <td>{{product.stock}}</td>                     
+                    <td><i class="fa fa-trash icon delete-icon" aria-hidden="true" (click)="deleteProduct(product?.id)"></i></td>
+                    <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="editProduct(product)"></i></td>
                   </tr>
+                  <tr *ngIf="products.length === 0">No records Found</tr>
                 </tbody>
             </table>
         </div>
         <div class="col-12 col-lg-4">
             <div class="card">
-                <form>
-                    <img src="images/products/product-default.png" alt="picture">
+                <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                    <div class="image-container text-center">
+                        <div *ngIf="imageLoading" class="spinner-border text-primary" role="status"></div>
+                        <img *ngIf="!imageLoading"
+                          [src]="imageUrl || defaultImage" 
+                          (click)="fileInput.click()" 
+                          class="img-thumbnail mb-3" 
+                          alt="Product Image">
+                        <input type="file" #fileInput (change)="onImageUpload($event)" hidden>
+                      </div>
                     <div class="form-group">
                         <label for="name">Product Name</label>
-                        <input type="text" name="name" id="name" placeholder="Enter the Product Name" autocomplete="off" required/>
+                        <input type="text" name="name" id="name" class="form-control" formControlName="name" placeholder="Enter the Product Name" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
-                        <label for="sPrice">Selling Price</label>
-                        <input type="text" name="sPrice" id="sPrice" placeholder="0.00" autocomplete="off" required/>
+                        <label for="sellingPrice">Selling Price</label>
+                        <input type="text" name="sellingPrice" id="sellingPrice" class="form-control" formControlName="sellingPrice" placeholder="0.00" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
-                        <label for="mPrice">Market Price</label>
-                        <input type="text" name="mPrice" id="mPrice" placeholder="0.00" autocomplete="off" required/>
+                        <label for="marketPrice">Market Price</label>
+                        <input type="text" name="marketPrice" id="marketPrice" class="form-control" formControlName="marketPrice"  placeholder="0.00" autocomplete="off" required/>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="stock">Stock</label>
-                                <input type="text" name="stock" id="stock" placeholder="0 Kg/Ml" autocomplete="off" required/>
+                                <input type="text" name="stock" id="stock" class="form-control"  formControlName="stock" placeholder="0 Kg/Ml" autocomplete="off" required/>
                             </div>
                         </div>
                         <div class="col-6 text-end">
                             <label>&nbsp;</label>
-                            <button type="submit" id="submit" name="submit">Save</button>
+                            <button type="submit" id="submit" name="submit" [disabled]="productForm.invalid || isSaved || !imageUrl">
+                                <span *ngIf="isSaved" class="spinner-border spinner-border-sm"></span>{{ isSaved ? ' Saving...' : 'Save' }}</button>
                         </div>
                     </div>
-                    
                 </form>
             </div>
         </div>

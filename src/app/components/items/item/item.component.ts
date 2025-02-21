@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-import type { Item } from './item.model';
+import type { Product } from './item.model';
 
 @Component({
   selector: 'app-item',
@@ -9,5 +8,5 @@ import type { Item } from './item.model';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  @Input({required: true}) item!:Item;
+  @Input({required: true}) product!:Product;
 }
