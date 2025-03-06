@@ -1,7 +1,7 @@
 <div id="admin">
     <div class="container">
-    <h2>Admin</h2>
-    <app-add-item></app-add-item>
+    <h2>Admin <span class="logout" (click)="logout()">Logout</span></h2>
+    <app-add-product [products]="products" (getProducts)="getAllProducts()"></app-add-product>
     </div>
 </div>
 

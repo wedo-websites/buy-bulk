@@ -4,7 +4,7 @@
 
 #products .container {
 
-    .items-content{
+    .products-content{
         h5 {
             color: var(--infobar-icon-color);
         }
@@ -22,7 +22,7 @@
         }
     }
 
-    .item-list {
+    .product-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -32,7 +32,7 @@
 
 
 @media (max-width: 767px) {
-    .item-list {
+    .product-list {
       justify-content: center !important;
       align-items: center;
     }

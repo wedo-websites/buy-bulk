@@ -1,0 +1,30 @@
+.alert-message {
+  position: fixed;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  text-align: center;
+  min-width: 200px;
+
+  &.success {
+    background: #28a745;
+  }
+  &.error {
+    background: #dc3545;
+  }
+  &.warning {
+    background: #ffc107;
+    color: #000;
+  }
+  &.info {
+    background: #17a2b8;
+  }
+}

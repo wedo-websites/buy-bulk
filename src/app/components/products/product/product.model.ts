@@ -4,5 +4,5 @@ export interface Product {
     selling_price : string;
     market_price : string;
     stock : string;
-    image? : string;
+    image?: Blob | string;
 }

@@ -11,3 +11,13 @@ button {
     margin-top: 10px;
     font-size: 12px
 }
+
+.homepage {
+    margin-bottom: 20px;
+    color: var(--infobar-icon-color);
+    cursor: pointer;
+}
+
+.homepage:hover {
+    color: #ad2400;
+}

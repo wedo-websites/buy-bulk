@@ -1,0 +1,9 @@
+<div *ngIf="alertMessageService.message$ | async as alertMessage" class="alert-message" [ngClass]="alertMessage.type">
+    <span>
+        <i class="fas fa-check-circle" *ngIf="alertMessage.type === 'success'"></i>
+        <i class="fas fa-check-circle" *ngIf="alertMessage.type === 'error'"></i>
+        <i class="fas fa-check-circle" *ngIf="alertMessage.type === 'warning'"></i>
+        <i class="fas fa-check-circle" *ngIf="alertMessage.type === 'info'"></i>
+        &nbsp; {{ alertMessage.message }}
+    </span>
+</div>

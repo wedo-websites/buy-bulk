@@ -1,12 +1,12 @@
 <div id="products">
     <div class="container">
-        <div class="items-content">
-            <h5>Items</h5>
+        <div class="products-content">
+            <h5>Products</h5>
             <p>We Provide <br> The Best Quality</p>
         </div>
-        <div class="item-list">
+        <div class="product-list">
             @for (product of products; track $index) {
-                <app-item [product]="product"></app-item>
+                <app-product [product]="product"></app-product>
             }
         </div>
     </div>

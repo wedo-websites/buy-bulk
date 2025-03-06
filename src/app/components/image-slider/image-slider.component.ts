@@ -15,7 +15,7 @@ export class ImageSliderComponent {
       alt: 'Dal',
       title: 'Dal, ',
       quote: 'Premium Quality',
-      description: 'Hurry! <br> Get Items At Unbeatable Prices'
+      description: 'Hurry! <br> Get Products At Unbeatable Prices'
     },
     {
       src: 'images/banner-images/banner-02.jpg',

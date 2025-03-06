@@ -1,4 +1,4 @@
-.item-container {
+.product-container {
   max-width: 418px;
 
   .container {
@@ -15,7 +15,7 @@
       object-fit: cover;
     }
 
-    .item-header {
+    .product-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -40,7 +40,7 @@
       }
     }
 
-    .item-content {
+    .product-content {
       ul {
         padding: 0px;
         display: flex;
@@ -77,7 +77,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .item-container {
+  .product-container {
     max-width: 330px;
   }
 }
