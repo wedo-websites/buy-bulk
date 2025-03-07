@@ -41,7 +41,7 @@
                           (click)="fileInput.click()" 
                           class="img-thumbnail mb-3" 
                           alt="Product Image">
-                        <input type="file" #fileInput (change)="onImageUpload($event)" hidden>
+                        <input type="file" #fileInput (change)="onImageUpload($event)" accept="image/*" hidden>
                       </div>
                     <div class="form-group">
                         <label for="name">Product Name</label>

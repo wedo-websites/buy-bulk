@@ -84,6 +84,17 @@ export class AddProductComponent {
   onImageUpload(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
+
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files are allowed.");
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Image size should not exceed 5MB.");
+        return;
+      }
+
       this.imageLoading = true;
       this.productForm.patchValue({ image: file });
       const reader = new FileReader();
@@ -93,6 +104,7 @@ export class AddProductComponent {
         this.existingImage = false;
       };
       reader.readAsDataURL(file);
+
     }
   }
 
