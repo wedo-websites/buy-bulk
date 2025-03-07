@@ -9,4 +9,5 @@ import type { Product } from './product.model';
 })
 export class ProductComponent {
   @Input({required: true}) product!:Product;
+  defaultImage: string = 'images/products/product-default.png';
 }

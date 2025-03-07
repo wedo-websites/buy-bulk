@@ -55,7 +55,7 @@ export class ProductsService {
   }
 
   updateProduct(id: string, product: FormData): Observable<ApiResponse<Product>> {
-    return this.http.put<ApiResponse<Product>>(`${this.apiUrl}/${id}`, product).pipe(
+    return this.http.patch<ApiResponse<Product>>(`${this.apiUrl}/${id}`, product).pipe(
       catchError(this.handleError)
     );
   }

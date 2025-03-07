@@ -52,6 +52,11 @@
     button:hover {
       background-color: #b70707;
     }
+
+    .clear-btn {
+      padding: 10px 15px;
+      margin-right: 10px;
+    }
   }
 
   tr {
@@ -75,7 +80,7 @@
     justify-content: center;
     align-items: center;
     height: 150px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     cursor: pointer;
   }
