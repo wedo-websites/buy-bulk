@@ -32,7 +32,7 @@ export class AddProductComponent {
     private alertMessageService: AlertMessageService
   ) {
     this.productForm = this.fb.group({
-      name: ['', Validators.required, Validators.maxLength(100)],
+      name: ['', [Validators.required, Validators.maxLength(100)]],
       selling_price: ['', [Validators.required, Validators.min(1)]],
       market_price: ['', [Validators.required, Validators.min(1)]],
       stock: ['', [Validators.required, Validators.min(1), Validators.maxLength(10)]],
