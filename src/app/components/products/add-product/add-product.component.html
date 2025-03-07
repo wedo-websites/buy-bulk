@@ -62,10 +62,10 @@
                                 <input type="text" name="stock" id="stock" class="form-control"  formControlName="stock" placeholder="0 Kg/Ml" autocomplete="off" required/>
                             </div>
                         </div>
-                        <div class="col-6 text-end">
+                        <div class="col-6">
                             <label>&nbsp;</label>
-                            <button type="submit" id="submit" name="submit" [disabled]="productForm.invalid || isSaved || !imageUrl">
-                                <span *ngIf="isSaved" class="spinner-border spinner-border-sm"></span>{{ isSaved ? ' Saving...' : 'Save' }}</button>
+                            <button type="button" id="clear" name="clear" (click)="resetData()">Clear</button>
+                            <button type="submit" id="submit" name="submit" [disabled]="productForm.invalid || isSaved || !imageUrl"><span *ngIf="isSaved" class="spinner-border spinner-border-sm"></span>{{ isSaved ? ' Saving...' : 'Save' }}</button>
                         </div>
                     </div>
                 </form>

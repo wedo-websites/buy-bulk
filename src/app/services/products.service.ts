@@ -54,13 +54,13 @@ export class ProductsService {
     );
   }
 
-  updateProduct(id: number, product: Product): Observable<ApiResponse<Product>> {
+  updateProduct(id: string, product: FormData): Observable<ApiResponse<Product>> {
     return this.http.put<ApiResponse<Product>>(`${this.apiUrl}/${id}`, product).pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteProduct(id: number): Observable<ApiResponse<null>> {
+  deleteProduct(id: string): Observable<ApiResponse<null>> {
     return this.http.delete<ApiResponse<null>>(`${this.apiUrl}/${id}`).pipe(
       catchError(this.handleError)
     );

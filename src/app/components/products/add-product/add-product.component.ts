@@ -19,6 +19,7 @@ export class AddProductComponent{
   @Input() products: any[] = [];
   @Output() getProducts: any = new EventEmitter<any>;
   productForm: FormGroup;
+  editingProductId: string | null = null
   imageUrl: string | null = null;
   defaultImage: string = 'images/products/product-default.png';
   imageLoading: boolean = false;
@@ -39,13 +40,44 @@ export class AddProductComponent{
   }
 
   editProduct(product: any) {
-    console.log('Edit:', product);
+    this.imageUrl = product.image ? product.image : null;
+    this.productForm.patchValue({
+      name: product.name,
+      selling_price: product.selling_price,
+      market_price: product.market_price,
+      stock: product.stock,
+      image: this.imageUrl
+    });
+
+    this.editingProductId = product.id;
   }
 
   deleteProduct(id?: string) {
     if (!id) return;
-    this.products = this.products.filter(product => String(product.id) !== id);
+  
+    if (!confirm('Are you sure you want to delete this product?')) {
+      return;
+    }
+
+    this.productsService.deleteProduct(id).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.products = this.products.filter(product => String(product.id) !== id);
+          if(id === this.editingProductId){
+            this.resetData();
+          }
+          this.alertMessageService.showToast('Product deleted successfully!', 'success');
+        } else {
+          this.alertMessageService.showToast(res.message, 'warning');
+        }
+      },
+      error: (err) => {
+        const errorMessage = err.error?.success === false ? err.error.message : err;
+        this.alertMessageService.showToast(errorMessage || 'Failed to delete product.', 'error');
+      }
+    });
   }
+  
 
   onImageUpload(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -63,42 +95,46 @@ export class AddProductComponent{
 
   resetData() {
     this.imageUrl = null;
+    this.editingProductId = null;
     this.productForm.reset();
   }
 
   onSubmit() {
-    if (this.productForm.valid) {
-      this.isSaved = true;
-      const formData = new FormData();
-      Object.entries(this.productForm.value).forEach(([key, value]) => {
-        if (key === 'image' && value instanceof File) {
-          formData.append(key, value);
-        } else {
-          formData.append(key, String(value));
-        }
-      });
-      this.productsService.createProduct(formData).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.isSaved = false;
-            this.alertMessageService.showToast('Product added successfully!', 'success');
-            this.resetData();
-            this.getProducts.emit();
-          }else {
-            this.alertMessageService.showToast(res.message, 'warning');
-          }
-        },
-        error: (err) => {
-          if (err.error && err.error.success === false) {
-            this.alertMessageService.showToast(err.error.message, 'warning');
-          } else {
-            this.alertMessageService.showToast(err, 'error');
-          }
-          this.isSaved = false;
-        }
-      });
-    } else {
+    if (!this.productForm.valid) {
       this.alertMessageService.showToast('Please fill all required fields and upload an image.', 'warning');
+      return;
     }
+  
+    this.isSaved = true;
+    const formData = new FormData();
+  
+    Object.entries(this.productForm.value).forEach(([key, value]) => {
+      formData.append(key, key === 'image' && value instanceof File ? value : String(value));
+    });
+  
+    const apiCall = this.editingProductId
+      ? this.productsService.updateProduct(this.editingProductId, formData)
+      : this.productsService.createProduct(formData);
+  
+    apiCall.subscribe({
+      next: (res) => {
+        this.isSaved = false;
+        const message = this.editingProductId ? 'Product updated successfully!' : 'Product added successfully!';
+        if (res.success) {
+          this.alertMessageService.showToast(message, 'success');
+          this.resetData();
+          this.getProducts.emit();
+          this.isSaved = false;
+        }else {
+          this.alertMessageService.showToast(res.message, 'warning');
+        }
+      },
+      error: (err) => {
+        const errorMessage = err.error?.success === false ? err.error.message : err;
+        this.alertMessageService.showToast(errorMessage, 'error');
+        this.isSaved = false;
+      }
+    });
   }
+  
 }

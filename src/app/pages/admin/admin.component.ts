@@ -28,7 +28,7 @@ export class AdminComponent {
           this.products = res.data.products;          
         }
       },
-      error: (err) => console.error('Login failed', err.error.message),
+      error: (err) => console.error('getAllProducts failed', err.error.message),
     });
   }
 

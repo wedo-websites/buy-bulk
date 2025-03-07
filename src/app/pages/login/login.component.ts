@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { AlertMessageService } from '../../services/alert-message.service';
 
-
 @Component({
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule],
@@ -42,15 +41,13 @@ export class LoginComponent {
         },
         error: (err) => {
           this.alertMessageService.showToast(err.error.message, 'error');
-          console.error('Login failed', err.error.message)
-        }
+        },
       });
     }
   }
 
-  redirectTo(){
+  redirectTo() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-
 }
