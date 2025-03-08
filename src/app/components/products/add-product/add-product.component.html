@@ -44,21 +44,21 @@
                         <input type="file" #fileInput (change)="onImageUpload($event)" accept="image/*" hidden>
                       </div>
                     <div class="form-group">
-                        <label for="name">Product Name</label>
+                        <label for="name">Product Name*</label>
                         <input type="text" name="name" id="name" class="form-control" formControlName="name" placeholder="Enter the Product Name" maxlength="100" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
-                        <label for="selling_price">Selling Price</label>
+                        <label for="selling_price">Selling Price*</label>
                         <input type="text" name="selling_price" id="selling_price" class="form-control" inputmode="decimal" formControlName="selling_price" placeholder="0.00" autocomplete="off" required />
                     </div>
                     <div class="form-group">
-                        <label for="market_price">Market Price</label>
+                        <label for="market_price">Market Price*</label>
                         <input type="text" name="market_price" id="market_price" class="form-control" inputmode="decimal" formControlName="market_price"  placeholder="0.00" autocomplete="off" required/>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="stock">Stock</label>
+                                <label for="stock">Stock*</label>
                                 <input type="text" name="stock" id="stock" class="form-control"  formControlName="stock" maxlength="10" placeholder="0 Kg/Ml" autocomplete="off" required/>
                             </div>
                         </div>

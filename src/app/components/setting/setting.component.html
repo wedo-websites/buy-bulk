@@ -1,0 +1,104 @@
+<div class="container mt-4">
+    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+      
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="logo_name" class="form-label">Logo Name*</label>
+          <input type="text" id="logo_name" class="form-control" formControlName="logo_name" placeholder="Enter Logo Name" maxlength="50" required autocomplete="off">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter Email" maxlength="50" autocomplete="off">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="place" class="form-label">Place</label>
+          <input type="text" id="place" class="form-control" formControlName="place" placeholder="Enter Place" maxlength="100" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="location" class="form-label">Location*</label>
+          <input type="text" id="location" class="form-control" formControlName="location" placeholder="Enter Location" required autocomplete="off">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="contact_phone" class="form-label">Contact Phone*</label>
+          <input type="text" id="contact_phone" class="form-control" formControlName="contact_phone" placeholder="Enter Contact Phone" maxlength="15" required autocomplete="off">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="contact_email" class="form-label">Contact Email*</label>
+          <input type="email" id="contact_email" class="form-control" formControlName="contact_email" placeholder="Enter Contact Email" maxlength="50" required autocomplete="off">
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="fb" class="form-label">Facebook</label>
+          <input type="text" id="fb" class="form-control" formControlName="fb" placeholder="Facebook Link" autocomplete="off">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="twitter" class="form-label">Twitter</label>
+          <input type="text" id="twitter" class="form-control" formControlName="twitter" placeholder="Twitter Link" autocomplete="off">
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="linked_in" class="form-label">LinkedIn</label>
+          <input type="text" id="linked_in" class="form-control" formControlName="linked_in" placeholder="LinkedIn Link" autocomplete="off">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="insta" class="form-label">Instagram</label>
+          <input type="text" id="insta" class="form-control" formControlName="insta" placeholder="Instagram Link" autocomplete="off">
+        </div>
+      </div>
+  
+      <div class="text-center mt-3">
+        <button type="submit" id="update" name="update" [disabled]="settingsForm.invalid || isSaved" ><span *ngIf="isSaved" class="spinner-border spinner-border-sm"></span> {{ isSaved ? ' Updating...' : 'Update' }}</button>
+      </div>
+  
+    </form>
+
+    <hr>
+
+
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+      <h4>Change Password</h4>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="old_password" class="form-label">Old Password*</label>
+          <input type="password" id="old_password" class="form-control" formControlName="old_password" placeholder="Enter Old Password" maxlength="16" required autocomplete="off">
+          <div *ngIf="passwordForm.get('old_password')?.invalid && passwordForm.get('old_password')?.touched" class="text-danger">
+            Old Password is required
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label">New Password*</label>
+          <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter New Password" maxlength="16" autocomplete="off">
+          <div *ngIf="passwordForm.get('password')?.invalid && passwordForm.get('password')?.touched" class="text-danger">
+            Password is required (Max: 16 chars)
+          </div>
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label for="confirm_password" class="form-label">Confirm Password*</label>
+          <input type="password" id="confirm_password" class="form-control" formControlName="confirm_password" placeholder="Confirm Password" maxlength="16" required autocomplete="off">
+          <div *ngIf="passwordForm.get('confirm_password')?.invalid && passwordForm.get('confirm_password')?.touched" class="text-danger">
+            Must match the new password
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center mt-3 mb-5">
+        <button type="submit" class="mb-3" [disabled]="passwordForm.invalid">
+          <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Update Password
+        </button>
+      </div>
+      
+    </form>
+  </div>
+  

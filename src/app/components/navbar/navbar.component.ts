@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 export class NavbarComponent {
   menuOpen = false;
   activeTab: string = 'home';
+  @Input() logo:string = '';
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 

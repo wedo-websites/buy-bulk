@@ -1,0 +1,25 @@
+<div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th class="text-start" scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Message</th>
+            <th scope="col">Sent On</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let message of messages; let i = index">
+            <td>{{ i + 1}}</td>
+            <td class="text-start">{{message.name}}</td>
+            <td>{{message.phone}}</td>
+            <td>{{message.msg}}</td> 
+            <td>{{message.createdAt}}</td> 
+            <td><i class="fa fa-trash icon delete-icon" aria-hidden="true" (click)="deleteMessage(message?.id)"></i></td>
+          </tr>
+          <tr *ngIf="messages.length === 0">No records Found</tr>
+        </tbody>
+    </table>
+</div>

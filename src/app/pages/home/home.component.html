@@ -1,9 +1,9 @@
 
-<div id="home">
-    <app-info-bar></app-info-bar>
-    <app-navbar></app-navbar>
+<div id="home" *ngIf="settings && settings !== null">
+    <app-info-bar [settings]="settings"></app-info-bar>
+    <app-navbar [logo]="settings.logo_name"></app-navbar>
     <app-image-slider></app-image-slider>
     <app-products></app-products>
     <app-about-us></app-about-us>
-    <app-contact></app-contact>
+    <app-contact [settings]="settings"></app-contact>
 </div>

@@ -1,0 +1,16 @@
+.icon {
+  cursor: pointer;
+}
+
+.delete-icon {
+  color: var(--icon-delete-color);
+}
+
+.delete-icon:hover {
+  color: #b70707;
+}
+
+th {
+  color: var(--infobar-icon-color);
+  font-weight: 500;
+}
