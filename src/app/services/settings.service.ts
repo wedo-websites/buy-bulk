@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -37,9 +37,11 @@ export interface ApiResponse<T> {
 
 export class SettingsService {
 
-  private apiUrl = 'http://localhost:3000/api/v1/settings';
-  
-  constructor(private http: HttpClient) {}
+  private apiUrl: string;
+
+  constructor(private http: HttpClient, @Inject('APP_CONFIG') private config: any) {
+    this.apiUrl = `${this.config.apiEndpoint}/settings`;
+  }
 
   getSettings(): Observable<ApiResponse<SettingResponse>> {
       return this.http.get<ApiResponse<SettingResponse>>(this.apiUrl).pipe(

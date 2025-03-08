@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Inject, Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -9,16 +9,20 @@ export interface ApiResponse<T> {
   data: T | null;
   dateTime: string;
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/api/v1/auth';
-
+  private apiUrl: string;
   http = inject(HttpClient);
+  
+  constructor(@Inject('APP_CONFIG') private config: any) {
+    this.apiUrl = `${this.config.apiEndpoint}/auth`;
+  }
 
-  login(data: {email: string, password: string}): Observable<any> {
+  login(data: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, data).pipe(
       catchError(this.handleError)
     );
@@ -36,15 +40,15 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 
   saveToken(token: string) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   getTokenExpiration(token: string): number | null {

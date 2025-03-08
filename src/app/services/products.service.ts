@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -32,9 +32,12 @@ export interface ApiResponse<T> {
   providedIn: 'root'
 })
 export class ProductsService {
-  private apiUrl = 'http://localhost:3000/api/v1/products';
+
+  private apiUrl: string;
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, @Inject('APP_CONFIG') private config: any) {
+    this.apiUrl = `${this.config.apiEndpoint}/products`;
+  }
 
   getAllProducts(): Observable<ApiResponse<ProductListResponse>> {
     return this.http.get<ApiResponse<ProductListResponse>>(this.apiUrl).pipe(
