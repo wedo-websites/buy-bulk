@@ -3,13 +3,13 @@
         <img [src]="product.image || defaultImage" [alt]="product.name">
         <div class="product-header">
             <h4>{{ product.name }}</h4>
-            <p>{{ product.selling_price }}</p>
+            <p>₹ {{ product.selling_price }}<span> {{ product.text }}</span></p>
         </div>
         <div class="product-content">
             <ul> 
-                <li>Selling Price: <span>{{ product.selling_price }}</span></li>
-                <li>Market Price: <span class="strikethrough">{{ product.market_price }}</span></li>
-                <li>Stock Available: <span>{{ product.stock }}</span></li>
+                <li>Sell Price: <span>₹ {{ product.selling_price }}</span></li>
+                <li>Market Price: <span class="strikethrough">₹ {{ product.market_price }}</span></li>
+                <li>Stock Available: <span>{{ product.stock }} {{ product.units }}</span></li>
             </ul>
         </div>
     </div>

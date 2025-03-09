@@ -31,12 +31,19 @@
       }
 
       p {
-        display: inline-block;
+        display: inline-flex;
+        flex-direction: column;
         text-align: right;
         color: var(--infobar-icon-color);
         font-weight: bold;
         font-size: 24px;
+
+        span {
+          font-size: 12px;
+          color: gray;
+        }
       }
+
     }
 
     .product-content {

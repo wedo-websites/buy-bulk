@@ -22,6 +22,7 @@ export class AddProductComponent {
   editingProductId: string | null = null
   imageUrl: string | null = null;
   defaultImage: string = 'images/products/product-default.png';
+  unitsOptions: string[] = ["kg", "g", "l", "ml", "packs", "pcs", "units", "boxes", "bags"];
   imageLoading: boolean = false;
   isSaved: boolean = false;
   existingImage: boolean = false;
@@ -32,11 +33,13 @@ export class AddProductComponent {
     private alertMessageService: AlertMessageService
   ) {
     this.productForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(100)]],
-      selling_price: ['', [Validators.required, Validators.maxLength(20)]],
-      market_price: ['', [Validators.required, Validators.maxLength(20)]],
-      stock: ['', [Validators.required, Validators.min(1), Validators.maxLength(10)]],
-      image: [null],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      selling_price: ['', [Validators.required, Validators.pattern(/^[+]?\d+(\.\d{1,2})?$/), Validators.max(999999.99)]],
+      text: ['', [Validators.maxLength(100)]],
+      market_price: ['', [Validators.required, Validators.pattern(/^[+]?\d+(\.\d{1,2})?$/), Validators.max(999999.99)]],
+      stock: ['', [Validators.maxLength(10)]],
+      units: ['', Validators.pattern(/^(kg|g|l|ml|packs|pcs|units|boxes|bags)$/)],
+      image: [null]
     });
   }
 
@@ -45,8 +48,10 @@ export class AddProductComponent {
     this.productForm.patchValue({
       name: product.name,
       selling_price: product.selling_price,
+      text: product.text,
       market_price: product.market_price,
       stock: product.stock,
+      units: product.units,
       image: null
     });
 
@@ -113,6 +118,7 @@ export class AddProductComponent {
     this.existingImage = false;
     this.editingProductId = null;
     this.productForm.reset();
+    this.productForm.patchValue({ units: '' });
   }
 
   onSubmit() {

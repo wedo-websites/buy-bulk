@@ -1,35 +1,39 @@
 <div id="add-product">
     <div class="row">
         <div class="col-12 col-lg-8">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th class="table-image" scope="col">Image</th>
-                    <th class="text-start" scope="col">Name</th>
-                    <th scope="col">Selling Price</th>
-                    <th scope="col">Market Price</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Delete</th>
-                    <th scope="col">Edit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of products; let i = index">
-                    <td>{{ i + 1}}</td>
-                    <td>
-                        <img [src]="product.image || defaultImage" class="product-img" alt="Product Image">
-                    </td>
-                    <td class="text-start">{{product.name}}</td>
-                    <td>{{product.selling_price | currency:'INR' }}</td>
-                    <td>{{product.market_price | currency:'INR' }}</td> 
-                    <td>{{product.stock}}</td>                     
-                    <td><i class="fa fa-trash icon delete-icon" aria-hidden="true" (click)="deleteProduct(product?.id)"></i></td>
-                    <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="editProduct(product)"></i></td>
-                  </tr>
-                  <tr *ngIf="products.length === 0">No records Found</tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th class="table-image" scope="col">Image</th>
+                        <th class="text-start" scope="col">Name</th>
+                        <th scope="col">Selling Price</th>
+                        <th scope="col">Market Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let product of products; let i = index">
+                        <td>{{ i + 1}}</td>
+                        <td>
+                            <img [src]="product.image || defaultImage" class="product-img" alt="Product Image">
+                        </td>
+                        <td class="text-start">{{product.name}}</td>
+                        <td>₹ {{product.selling_price}}</td>
+                        <td>₹ {{product.market_price}}</td>
+                        <td>{{product.stock}} {{product.units}}</td>     
+                        <td>{{product.text}}</td>
+                        <td><i class="fa fa-trash icon delete-icon" aria-hidden="true" (click)="deleteProduct(product?.id)"></i></td>
+                        <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="editProduct(product)"></i></td>
+                      </tr>
+                      <tr *ngIf="products.length === 0">No records Found</tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-12 col-lg-4">
             <div class="card">
@@ -48,21 +52,42 @@
                         <input type="text" name="name" id="name" class="form-control" formControlName="name" placeholder="Enter the Product Name" maxlength="100" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
-                        <label for="selling_price">Selling Price*</label>
-                        <input type="text" name="selling_price" id="selling_price" class="form-control" formControlName="selling_price" placeholder="0.00 / Kg" autocomplete="off" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="market_price">Market Price*</label>
-                        <input type="text" name="market_price" id="market_price" class="form-control" formControlName="market_price"  placeholder="0.00 / Kg" autocomplete="off" required/>
+                        <label for="text">Text</label>
+                        <input type="text" name="text" id="text" class="form-control" formControlName="text" placeholder="e.g: 100 grams packet" autocomplete="off"/>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="stock">Stock*</label>
-                                <input type="text" name="stock" id="stock" class="form-control"  formControlName="stock" maxlength="10" placeholder="0 Kg/Ml" autocomplete="off" required/>
+                                <label for="selling_price">Selling Price*</label>
+                                <input type="text" name="selling_price" id="selling_price" class="form-control" formControlName="selling_price" placeholder="0.00" autocomplete="off" required />
                             </div>
                         </div>
                         <div class="col-6">
+                            <div class="form-group">
+                                <label for="market_price">Market Price*</label>
+                                <input type="text" name="market_price" id="market_price" class="form-control" formControlName="market_price"  placeholder="0.00" autocomplete="off" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="stock">Stock</label>
+                                <input type="text" name="stock" id="stock" class="form-control"  formControlName="stock" maxlength="10" placeholder="0" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="units">Units</label>
+                                <select class="form-control" name="units" id="units" formControlName="units">
+                                    <option value="">Select Unit</option>
+                                    <option *ngFor="let unit of unitsOptions" [value]="unit">{{ unit }}</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-12">
                             <label>&nbsp;</label>
                             <button type="button" id="clear" name="clear" (click)="resetData()" class="clear-btn"> Clear</button>
                             <button type="submit" id="submit" name="submit" [disabled]="productForm.invalid || isSaved || !imageUrl"><span *ngIf="isSaved" class="spinner-border spinner-border-sm"></span>{{ isSaved ? ' Saving...' : 'Save' }}</button>

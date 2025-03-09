@@ -1,21 +1,25 @@
-h2 {
+#admin {
+  padding: 20px 15px;
+
+  h2 {
     padding: 20px 10px;
     color: var(--infobar-icon-color);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-}
+  }
 
-.logout {
+  .logout {
     font-size: 50%;
     cursor: pointer;
-}
+  }
 
-.logout:hover {
+  .logout:hover {
     text-decoration: underline;
     color: #ad2400;
-}
+  }
 
-.nav-link {
-    color: var(--infobar-icon-color); 
+  .nav-link {
+    color: var(--infobar-icon-color);
+  }
 }
