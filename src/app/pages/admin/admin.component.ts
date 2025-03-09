@@ -19,7 +19,7 @@ export class AdminComponent{
   authService = inject(AuthService);
   router = inject(Router);
   products: any[] = [];
-  activeTab: string = 'setting';
+  activeTab: string = 'product';
 
   constructor(){
     this.getAllProducts(); 
